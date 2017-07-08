@@ -16,12 +16,11 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func trigger(_ sender: Any) {
         self.setupSession()
-        var cameraTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: true)
-        let when = DispatchTime.now() + 2 // change 2 to number of seconds to last for
+        var cameraTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: true)
+        let when = DispatchTime.now() + 4 // change 2 to number of seconds to last for
         DispatchQueue.main.asyncAfter(deadline: when) {
             cameraTimer.invalidate()
-            Alamofire.request(self.ngrok) // send shit seperated by %
-            console.log(self.ngrok)
+            Alamofire.request("http://4adacd3b.ngrok.io/send?input=\(self.ngrok)")
         }
     }
     
@@ -44,7 +43,7 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var output: AVCaptureStillImageOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var count = 0;
-    var ngrok = "http://41e888fa.ngrok.io/send?input=";
+    var ngrok = "https://4adacd3b.ngrok.io/send?input=";
     
     func setupSession() {
         print("haaaeaea")
@@ -76,8 +75,6 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func capturePhoto() {
-        count += 1 // add one to te number of sihtters to
-        print("same")
         guard let connection = output.connection(withMediaType: AVMediaTypeVideo) else { return }
         connection.videoOrientation = .portrait
         
@@ -89,7 +86,10 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             let imageJPG: Data! = UIImageJPEGRepresentation(image, 0.1)
             let base64String = (imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-            self.ngrok += base64String + "%" // splice it at %
+            self.ngrok += "\(base64String)%" // splice it at %
+            print("same")
+            print(" ")
+            print(self.ngrok)
         }
     }
 
