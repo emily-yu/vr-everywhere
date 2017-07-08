@@ -1,0 +1,6 @@
+framework module Pods_vr_everywhereTests {
+  umbrella header "Pods-vr-everywhereTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

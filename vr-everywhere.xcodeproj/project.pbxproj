@@ -1,0 +1,735 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34BB78A7074E9085BECC8C08 /* Pods_vr_everywhereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49812F41C513CC8A717F12CD /* Pods_vr_everywhereUITests.framework */; };
+		6B2B0715DA038DF6EF9950ED /* Pods_vr_everywhereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBF8FDD118A921431454940 /* Pods_vr_everywhereTests.framework */; };
+		A10735E61F10BC22003A3AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10735E51F10BC22003A3AAC /* AppDelegate.swift */; };
+		A10735E81F10BC22003A3AAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10735E71F10BC22003A3AAC /* ViewController.swift */; };
+		A10735EB1F10BC22003A3AAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A10735E91F10BC22003A3AAC /* Main.storyboard */; };
+		A10735ED1F10BC22003A3AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10735EC1F10BC22003A3AAC /* Assets.xcassets */; };
+		A10735F01F10BC22003A3AAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A10735EE1F10BC22003A3AAC /* LaunchScreen.storyboard */; };
+		A10735FB1F10BC22003A3AAC /* vr_everywhereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10735FA1F10BC22003A3AAC /* vr_everywhereTests.swift */; };
+		A10736061F10BC22003A3AAC /* vr_everywhereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10736051F10BC22003A3AAC /* vr_everywhereUITests.swift */; };
+		A10736141F11271E003A3AAC /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10736131F11271E003A3AAC /* HomeController.swift */; };
+		C6AB43A1C200DC43A9CB2CCA /* Pods_vr_everywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10735F71F10BC22003A3AAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10735DA1F10BC22003A3AAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10735E11F10BC22003A3AAC;
+			remoteInfo = "vr-everywhere";
+		};
+		A10736021F10BC22003A3AAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10735DA1F10BC22003A3AAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10735E11F10BC22003A3AAC;
+			remoteInfo = "vr-everywhere";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vr_everywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49812F41C513CC8A717F12CD /* Pods_vr_everywhereUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vr_everywhereUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		544E848E26D753F8EF8F7B80 /* Pods-vr-everywhereUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhereUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhereUITests/Pods-vr-everywhereUITests.release.xcconfig"; sourceTree = "<group>"; };
+		56CF74DE6B8795DC2B271560 /* Pods-vr-everywhereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhereUITests/Pods-vr-everywhereUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		82E07B08D4E6927CD566D73C /* Pods-vr-everywhereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhereTests/Pods-vr-everywhereTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A10735E21F10BC22003A3AAC /* vr-everywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vr-everywhere.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10735E51F10BC22003A3AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A10735E71F10BC22003A3AAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A10735EA1F10BC22003A3AAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A10735EC1F10BC22003A3AAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10735EF1F10BC22003A3AAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A10735F11F10BC22003A3AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10735F61F10BC22003A3AAC /* vr-everywhereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vr-everywhereTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10735FA1F10BC22003A3AAC /* vr_everywhereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vr_everywhereTests.swift; sourceTree = "<group>"; };
+		A10735FC1F10BC22003A3AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10736011F10BC22003A3AAC /* vr-everywhereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vr-everywhereUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10736051F10BC22003A3AAC /* vr_everywhereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vr_everywhereUITests.swift; sourceTree = "<group>"; };
+		A10736071F10BC22003A3AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10736131F11271E003A3AAC /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		BBBF8FDD118A921431454940 /* Pods_vr_everywhereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vr_everywhereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD6525DE155F6A4FDAFC4867 /* Pods-vr-everywhereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhereTests/Pods-vr-everywhereTests.release.xcconfig"; sourceTree = "<group>"; };
+		D2F44E694D79B0F753A10C37 /* Pods-vr-everywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhere/Pods-vr-everywhere.debug.xcconfig"; sourceTree = "<group>"; };
+		FF968291D4DDF3765E08196B /* Pods-vr-everywhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhere/Pods-vr-everywhere.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10735DF1F10BC22003A3AAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6AB43A1C200DC43A9CB2CCA /* Pods_vr_everywhere.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735F31F10BC22003A3AAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B2B0715DA038DF6EF9950ED /* Pods_vr_everywhereTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735FE1F10BC22003A3AAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BB78A7074E9085BECC8C08 /* Pods_vr_everywhereUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2CC8AC59BB8C8456BC61D4CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2F44E694D79B0F753A10C37 /* Pods-vr-everywhere.debug.xcconfig */,
+				FF968291D4DDF3765E08196B /* Pods-vr-everywhere.release.xcconfig */,
+				82E07B08D4E6927CD566D73C /* Pods-vr-everywhereTests.debug.xcconfig */,
+				BD6525DE155F6A4FDAFC4867 /* Pods-vr-everywhereTests.release.xcconfig */,
+				56CF74DE6B8795DC2B271560 /* Pods-vr-everywhereUITests.debug.xcconfig */,
+				544E848E26D753F8EF8F7B80 /* Pods-vr-everywhereUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A10735D91F10BC22003A3AAC = {
+			isa = PBXGroup;
+			children = (
+				A10735E41F10BC22003A3AAC /* vr-everywhere */,
+				A10735F91F10BC22003A3AAC /* vr-everywhereTests */,
+				A10736041F10BC22003A3AAC /* vr-everywhereUITests */,
+				A10735E31F10BC22003A3AAC /* Products */,
+				2CC8AC59BB8C8456BC61D4CF /* Pods */,
+				B6F4546CAAB177B50BCCC20A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A10735E31F10BC22003A3AAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10735E21F10BC22003A3AAC /* vr-everywhere.app */,
+				A10735F61F10BC22003A3AAC /* vr-everywhereTests.xctest */,
+				A10736011F10BC22003A3AAC /* vr-everywhereUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10735E41F10BC22003A3AAC /* vr-everywhere */ = {
+			isa = PBXGroup;
+			children = (
+				A10735E51F10BC22003A3AAC /* AppDelegate.swift */,
+				A10735E71F10BC22003A3AAC /* ViewController.swift */,
+				A10735E91F10BC22003A3AAC /* Main.storyboard */,
+				A10736131F11271E003A3AAC /* HomeController.swift */,
+				A10735EC1F10BC22003A3AAC /* Assets.xcassets */,
+				A10735EE1F10BC22003A3AAC /* LaunchScreen.storyboard */,
+				A10735F11F10BC22003A3AAC /* Info.plist */,
+			);
+			path = "vr-everywhere";
+			sourceTree = "<group>";
+		};
+		A10735F91F10BC22003A3AAC /* vr-everywhereTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10735FA1F10BC22003A3AAC /* vr_everywhereTests.swift */,
+				A10735FC1F10BC22003A3AAC /* Info.plist */,
+			);
+			path = "vr-everywhereTests";
+			sourceTree = "<group>";
+		};
+		A10736041F10BC22003A3AAC /* vr-everywhereUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A10736051F10BC22003A3AAC /* vr_everywhereUITests.swift */,
+				A10736071F10BC22003A3AAC /* Info.plist */,
+			);
+			path = "vr-everywhereUITests";
+			sourceTree = "<group>";
+		};
+		B6F4546CAAB177B50BCCC20A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */,
+				BBBF8FDD118A921431454940 /* Pods_vr_everywhereTests.framework */,
+				49812F41C513CC8A717F12CD /* Pods_vr_everywhereUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10735E11F10BC22003A3AAC /* vr-everywhere */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A107360A1F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhere" */;
+			buildPhases = (
+				9DC001872261C854859C8049 /* [CP] Check Pods Manifest.lock */,
+				A10735DE1F10BC22003A3AAC /* Sources */,
+				A10735DF1F10BC22003A3AAC /* Frameworks */,
+				A10735E01F10BC22003A3AAC /* Resources */,
+				625872300150628B945067BC /* [CP] Embed Pods Frameworks */,
+				012B67FC6227B5B123CDB98D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "vr-everywhere";
+			productName = "vr-everywhere";
+			productReference = A10735E21F10BC22003A3AAC /* vr-everywhere.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A10735F51F10BC22003A3AAC /* vr-everywhereTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A107360D1F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhereTests" */;
+			buildPhases = (
+				9EC8956D32F6F3E974724C6F /* [CP] Check Pods Manifest.lock */,
+				A10735F21F10BC22003A3AAC /* Sources */,
+				A10735F31F10BC22003A3AAC /* Frameworks */,
+				A10735F41F10BC22003A3AAC /* Resources */,
+				8227F85BC29281C8CCC78A0C /* [CP] Embed Pods Frameworks */,
+				27C55C0A65D941DF5966DAC5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10735F81F10BC22003A3AAC /* PBXTargetDependency */,
+			);
+			name = "vr-everywhereTests";
+			productName = "vr-everywhereTests";
+			productReference = A10735F61F10BC22003A3AAC /* vr-everywhereTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A10736001F10BC22003A3AAC /* vr-everywhereUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10736101F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhereUITests" */;
+			buildPhases = (
+				1A1FA9A5870689B20C71F511 /* [CP] Check Pods Manifest.lock */,
+				A10735FD1F10BC22003A3AAC /* Sources */,
+				A10735FE1F10BC22003A3AAC /* Frameworks */,
+				A10735FF1F10BC22003A3AAC /* Resources */,
+				F0EB762D759CF0F24D593AC3 /* [CP] Embed Pods Frameworks */,
+				E5435B574EFAEC52246516C3 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10736031F10BC22003A3AAC /* PBXTargetDependency */,
+			);
+			name = "vr-everywhereUITests";
+			productName = "vr-everywhereUITests";
+			productReference = A10736011F10BC22003A3AAC /* vr-everywhereUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10735DA1F10BC22003A3AAC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Emily;
+				TargetAttributes = {
+					A10735E11F10BC22003A3AAC = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+					};
+					A10735F51F10BC22003A3AAC = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A10735E11F10BC22003A3AAC;
+					};
+					A10736001F10BC22003A3AAC = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A10735E11F10BC22003A3AAC;
+					};
+				};
+			};
+			buildConfigurationList = A10735DD1F10BC22003A3AAC /* Build configuration list for PBXProject "vr-everywhere" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10735D91F10BC22003A3AAC;
+			productRefGroup = A10735E31F10BC22003A3AAC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10735E11F10BC22003A3AAC /* vr-everywhere */,
+				A10735F51F10BC22003A3AAC /* vr-everywhereTests */,
+				A10736001F10BC22003A3AAC /* vr-everywhereUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10735E01F10BC22003A3AAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10735F01F10BC22003A3AAC /* LaunchScreen.storyboard in Resources */,
+				A10735ED1F10BC22003A3AAC /* Assets.xcassets in Resources */,
+				A10735EB1F10BC22003A3AAC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735F41F10BC22003A3AAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735FF1F10BC22003A3AAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		012B67FC6227B5B123CDB98D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhere/Pods-vr-everywhere-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1A1FA9A5870689B20C71F511 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		27C55C0A65D941DF5966DAC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhereTests/Pods-vr-everywhereTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		625872300150628B945067BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhere/Pods-vr-everywhere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8227F85BC29281C8CCC78A0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhereTests/Pods-vr-everywhereTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DC001872261C854859C8049 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9EC8956D32F6F3E974724C6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E5435B574EFAEC52246516C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhereUITests/Pods-vr-everywhereUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0EB762D759CF0F24D593AC3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-vr-everywhereUITests/Pods-vr-everywhereUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10735DE1F10BC22003A3AAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10735E81F10BC22003A3AAC /* ViewController.swift in Sources */,
+				A10735E61F10BC22003A3AAC /* AppDelegate.swift in Sources */,
+				A10736141F11271E003A3AAC /* HomeController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735F21F10BC22003A3AAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10735FB1F10BC22003A3AAC /* vr_everywhereTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10735FD1F10BC22003A3AAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10736061F10BC22003A3AAC /* vr_everywhereUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10735F81F10BC22003A3AAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10735E11F10BC22003A3AAC /* vr-everywhere */;
+			targetProxy = A10735F71F10BC22003A3AAC /* PBXContainerItemProxy */;
+		};
+		A10736031F10BC22003A3AAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10735E11F10BC22003A3AAC /* vr-everywhere */;
+			targetProxy = A10736021F10BC22003A3AAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A10735E91F10BC22003A3AAC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A10735EA1F10BC22003A3AAC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A10735EE1F10BC22003A3AAC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A10735EF1F10BC22003A3AAC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A10736081F10BC22003A3AAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A10736091F10BC22003A3AAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A107360B1F10BC22003A3AAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2F44E694D79B0F753A10C37 /* Pods-vr-everywhere.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhere/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhere";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A107360C1F10BC22003A3AAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF968291D4DDF3765E08196B /* Pods-vr-everywhere.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhere/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhere";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A107360E1F10BC22003A3AAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E07B08D4E6927CD566D73C /* Pods-vr-everywhereTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhereTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhereTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vr-everywhere.app/vr-everywhere";
+			};
+			name = Debug;
+		};
+		A107360F1F10BC22003A3AAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD6525DE155F6A4FDAFC4867 /* Pods-vr-everywhereTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhereTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhereTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vr-everywhere.app/vr-everywhere";
+			};
+			name = Release;
+		};
+		A10736111F10BC22003A3AAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56CF74DE6B8795DC2B271560 /* Pods-vr-everywhereUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhereUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhereUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "vr-everywhere";
+			};
+			name = Debug;
+		};
+		A10736121F10BC22003A3AAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 544E848E26D753F8EF8F7B80 /* Pods-vr-everywhereUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "vr-everywhereUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhereUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "vr-everywhere";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10735DD1F10BC22003A3AAC /* Build configuration list for PBXProject "vr-everywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10736081F10BC22003A3AAC /* Debug */,
+				A10736091F10BC22003A3AAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A107360A1F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A107360B1F10BC22003A3AAC /* Debug */,
+				A107360C1F10BC22003A3AAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A107360D1F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhereTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A107360E1F10BC22003A3AAC /* Debug */,
+				A107360F1F10BC22003A3AAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10736101F10BC22003A3AAC /* Build configuration list for PBXNativeTarget "vr-everywhereUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10736111F10BC22003A3AAC /* Debug */,
+				A10736121F10BC22003A3AAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10735DA1F10BC22003A3AAC /* Project object */;
+}

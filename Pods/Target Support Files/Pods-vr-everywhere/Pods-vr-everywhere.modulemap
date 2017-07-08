@@ -1,0 +1,6 @@
+framework module Pods_vr_everywhere {
+  umbrella header "Pods-vr-everywhere-umbrella.h"
+
+  export *
+  module * { export * }
+}
