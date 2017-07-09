@@ -28,5 +28,15 @@ def getImages(dir):
 
     return newImageList, images
 
+def rotate(image_list, degree):
+    for image_index in range(len(image_list)):
+        image = image_list[image_index]
+        rows,cols = image.shape
+
+        M = cv2.getRotationMatrix2D((cols/2,rows/2),degree,1)
+        dst = cv2.warpAffine(image,M,(cols,rows))
+        image_list[image_index] = dst
+    return image_list
+
 def saveImage(image, directory):
     cv2.imwrite(directory,image)
