@@ -108,6 +108,7 @@ def scrape(file_name, number_of_images):
                 break;
         except:
             continue
+
     return matrices
 
 def image_to_dict(row_list):
@@ -129,18 +130,6 @@ def image_to_dict(row_list):
         if not inside:
             image_dictionary[len(row_to_index)] = 1
             row_to_index[len(row_to_index)] = row
-    print ("this is how asoidjfoaijefow")
-
-    print (len(image_dictionary.keys()))
-    print (len(row_to_index.keys()))
-    print (len(image_dictionary.values()))
-    print (len(row_to_index.values()))
-
-    index = 0
-    for x in image_dictionary.values():
-        index = index + x
-    print ("bullshit awsdf")
-    print (index)
 
     return image_dictionary, row_to_index
 
@@ -150,55 +139,49 @@ def build_dataset(count, row_to_index):
 
     data = list()
     dictionary = dict()
-    dictionary_sketch = dict()
+    dictionary_sketch = {}
     unk_count = 0
+    for x in range(len(row_to_index.values())):
+        current_row2index = row_to_index.values()[x]
+        row_to_index.values()[x] = list(current_row2index)
 
     for key in count:
         for value in row_to_index.values():
-            print (len(dictionary))
             dictionary[key] = len(dictionary.keys())
             dictionary_sketch[key] = value
+            print("key is {0}".format(key))
+            print("value is {0}".format(value))
+    print ("dictionary_sketch is {0}".format(dictionary_sketch))
 
-    print (dictionary)
-    print (dictionary[key])
     data = list()
     unk_count = 0
 
     for row in row_to_index.values():
         same = False
         for v in dictionary_sketch.values():
-            # print ("v is {0}".format(v))
-            # print ("k is {0}".format(k))
-            print ("some big bullshit")
-            print (row)
-            print (v)
-            if row == v:
-                # index = dictionary[k]
+            if all(row[x] == v[x] for x in range(len(row) - 1)):
                 same = True
             index = dictionary[key]
         if(same == False):
             index = 0
-        print ("index is {0}".format(index))
         data.append(index)
 
     reversed_dictionary = dict(zip(dictionary.values(), dictionary_sketch.values()))
-
+    # print ("the stuff ishabhha")
+    # print (dictionary.values())
+    # print (dictionary_sketch.values())
+    # print (reversed_dictionary)
     return data, dictionary, reversed_dictionary
 
 
-matrices = scrape("urls.txt", 10)
-print ("matrices are {0}".format(matrices))
+matrices = scrape("urls.txt", 1)
 
 data_dict = dict()
 dictionary_dict = dict()
 reverse_dict = dict()
 
 for direction in ['up', 'left', 'right', 'down']:
-    print (direction)
-    print (matrices[direction])
     count, row_to_index = image_to_dict(matrices[direction])
-    print ("count is {0}".format(count))
-    print ("row to index is {0}".format(row_to_index))
     data, dictionary, reverse = build_dataset(count, row_to_index)
 
     data_dict[direction] = data
@@ -229,7 +212,8 @@ def generate_batch(batch_size, num_skips, skip_window, direction):
     buffer = collections.deque(maxlen=span)
     if data_index + span > len(data_dict[direction]):
         data_index = 0
-    print (data_dict[direction])
+    print ("got into generate_batch")
+    # print (data_dict[direction])
     buffer.extend(data_dict[direction][data_index:data_index + span])
     data_index += span
 
@@ -256,11 +240,10 @@ def generate_batch(batch_size, num_skips, skip_window, direction):
 
 batch, labels = generate_batch(batch_size=8, num_skips=2, skip_window=1, direction="up")
 
-# print (batch)
-# print (reverse_dict)
-for i in range(8):
-  print(batch[i], reverse_dict['up'][batch[i]],
-        '->', labels[i, 0], reverse_dict['up'][labels[i, 0]])
+
+# for i in range(8):
+  # print(batch[i], reverse_dict['up'][batch[i]],
+        # '->', labels[i, 0], reverse_dict['up'][labels[i, 0]])
 
 # Step 4: Build and train a skip-gram model.
 
