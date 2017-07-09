@@ -93,15 +93,15 @@ def scrape(file_name, number_of_images):
                 matrices["down"].append(down_row)
 
 
-            last_row = list()
+            # last_row = list()
 
-            for _ in range(0,31):
-                last_row.append(-1)
+            # for _ in range(0,31):
+                # last_row.append(-1)
 
-            matrices["up"].append(last_row)
-            matrices["left"].append(last_row)
-            matrices["right"].append(last_row)
-            matrices["down"].append(last_row)
+            # matrices["up"].append(last_row)
+            # matrices["left"].append(last_row)
+            # matrices["right"].append(last_row)
+            # matrices["down"].append(last_row)
 
             index += 1
             if(index >= number_of_images):
@@ -141,16 +141,21 @@ def build_dataset(count, row_to_index):
     dictionary = dict()
     dictionary_sketch = {}
     unk_count = 0
+
     for x in range(len(row_to_index.values())):
         current_row2index = row_to_index.values()[x]
         row_to_index.values()[x] = list(current_row2index)
 
-    for key in count:
-        for value in row_to_index.values():
-            dictionary[key] = len(dictionary.keys())
-            dictionary_sketch[key] = value
-            print("key is {0}".format(key))
-            print("value is {0}".format(value))
+    # for key in count:
+    for key,value in row_to_index.iteritems():
+        # print ("KEY is {0}".format(key))
+        # for current_word_key, realkey in count.iteritems():
+            # print ("currnet word is {0}".format(current_word_key))
+            # if(key == current_word_key):
+            # print (realkey)
+        dictionary[key] = len(dictionary.keys())
+        dictionary_sketch[key] = list(value)
+
     print ("dictionary_sketch is {0}".format(dictionary_sketch))
 
     data = list()
@@ -173,8 +178,9 @@ def build_dataset(count, row_to_index):
     # print (reversed_dictionary)
     return data, dictionary, reversed_dictionary
 
+images_num = 10
 
-matrices = scrape("urls.txt", 1)
+matrices = scrape("urls.txt", images_num)
 
 data_dict = dict()
 dictionary_dict = dict()
@@ -188,17 +194,13 @@ for direction in ['up', 'left', 'right', 'down']:
     dictionary_dict[direction] = dictionary
     reverse_dict[direction] = reverse
 
-    # up_data, up_dictionary, up_reverse_dictionary = build_dataset(up_matrix, imageList, number_of_columns)
-    # left_data, left_dictionary, left_reverse_dictionary = build_dataset(left_matrix, imageList, number_of_columns)
-    # right_data, right_dictionary, right_reverse_dictionary = build_dataset(right_matrix, imageList, number_of_columns)
-    # down_data, down_dictionary, down_reverse_dictionary = build_dataset(down_matrix, imageList, number_of_columns)
-
 del matrices  # Hint to reduce memory.
 
 data_index = 0
 batch_size = 128
 num_skips = 4
 skip_window = 1
+vocabulary_size = len(reverse_dict["up"])
 
 # Step 3: Function to generate a training batch for the skip-gram model.
 def generate_batch(batch_size, num_skips, skip_window, direction):
@@ -212,7 +214,6 @@ def generate_batch(batch_size, num_skips, skip_window, direction):
     buffer = collections.deque(maxlen=span)
     if data_index + span > len(data_dict[direction]):
         data_index = 0
-    print ("got into generate_batch")
     # print (data_dict[direction])
     buffer.extend(data_dict[direction][data_index:data_index + span])
     data_index += span
@@ -224,12 +225,12 @@ def generate_batch(batch_size, num_skips, skip_window, direction):
             while target in targets_to_avoid:
                 target = random.randint(0, span - 1)
             targets_to_avoid.append(target)
-            print (i * num_skips + j)
+
             batch[i * num_skips + j] = buffer[skip_window]
             labels[i * num_skips + j, 0] = buffer[target]
 
         if data_index == len(data_dict[direction]):
-            buffer[:] = data_dict[direction][:span]
+            buffer = data_dict[direction][:span]
             data_index = span
         else:
             buffer.append(data_dict[direction][data_index])
@@ -249,7 +250,7 @@ batch, labels = generate_batch(batch_size=8, num_skips=2, skip_window=1, directi
 
 batch_size = 128
 embedding_size = 128  # Dimension of the embedding vector.
-skip_window = 1       # How many words to consider left and right.
+skip_window = 4       # How many words to consider left and right.
 num_skips = 2         # How many times to reuse an input to generate a label.
 
 # We pick a random validation set to sample nearest neighbors. Here we limit the
@@ -314,11 +315,12 @@ with tf.Session(graph=graph) as session:
   # We must initialize all variables before we use them.
   init.run()
   print('Initialized')
+  direction = "up"
 
   average_loss = 0
   for step in xrange(num_steps):
     batch_inputs, batch_labels = generate_batch(
-        batch_size, num_skips, skip_window)
+        batch_size, num_skips, skip_window, direction)
     feed_dict = {train_inputs: batch_inputs, train_labels: batch_labels}
 
     # We perform one update step by evaluating the optimizer op (including it
@@ -337,12 +339,13 @@ with tf.Session(graph=graph) as session:
     if step % 10000 == 0:
       sim = similarity.eval()
       for i in xrange(valid_size):
-        valid_word = reverse_dictionary[valid_examples[i]]
+        valid_word = reverse_dict[direction][valid_examples[i]]
         top_k = 8  # number of nearest neighbors
         nearest = (-sim[i, :]).argsort()[1:top_k + 1]
+
         log_str = 'Nearest to %s:' % valid_word
         for k in xrange(top_k):
-          close_word = reverse_dictionary[nearest[k]]
+          close_word = reverse_dict[direction][nearest[k]]
           log_str = '%s %s,' % (log_str, close_word)
         print(log_str)
   final_embeddings = normalized_embeddings.eval()
@@ -373,7 +376,7 @@ try:
   tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
   plot_only = 500
   low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
-  labels = [reverse_dictionary[i] for i in xrange(plot_only)]
+  labels = [reverse_dict[i] for i in xrange(plot_only)]
   plot_with_labels(low_dim_embs, labels)
 
 except ImportError:
