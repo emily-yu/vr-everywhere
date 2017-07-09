@@ -1,2 +1,7 @@
 urls.txt
+<<<<<<< HEAD
 .DS_Store
+=======
+Carthage
+ngrok
+>>>>>>> 3eff660eb1ef34250a3e3290ebb385ad5886b1f3

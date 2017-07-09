@@ -17,6 +17,11 @@
 		A10735FB1F10BC22003A3AAC /* vr_everywhereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10735FA1F10BC22003A3AAC /* vr_everywhereTests.swift */; };
 		A10736061F10BC22003A3AAC /* vr_everywhereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10736051F10BC22003A3AAC /* vr_everywhereUITests.swift */; };
 		A10736141F11271E003A3AAC /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10736131F11271E003A3AAC /* HomeController.swift */; };
+		A124A91B1F11F22A00C2965A /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A124A91A1F11F22A00C2965A /* RestKit.framework */; };
+		A124A91D1F11F23200C2965A /* SpeechToTextV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A124A91C1F11F23200C2965A /* SpeechToTextV1.framework */; };
+		A124A91F1F11F26E00C2965A /* SpeechToTextV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A124A91C1F11F23200C2965A /* SpeechToTextV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A124A9201F11F26E00C2965A /* RestKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A124A91A1F11F22A00C2965A /* RestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A124A9221F11F28A00C2965A /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = A124A9211F11F28A00C2965A /* Credentials.swift */; };
 		C6AB43A1C200DC43A9CB2CCA /* Pods_vr_everywhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +41,20 @@
 			remoteInfo = "vr-everywhere";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A124A91E1F11F24C00C2965A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A124A91F1F11F26E00C2965A /* SpeechToTextV1.framework in CopyFiles */,
+				A124A9201F11F26E00C2965A /* RestKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vr_everywhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +76,9 @@
 		A10736051F10BC22003A3AAC /* vr_everywhereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vr_everywhereUITests.swift; sourceTree = "<group>"; };
 		A10736071F10BC22003A3AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10736131F11271E003A3AAC /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A124A91A1F11F22A00C2965A /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
+		A124A91C1F11F23200C2965A /* SpeechToTextV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechToTextV1.framework; path = Carthage/Build/iOS/SpeechToTextV1.framework; sourceTree = "<group>"; };
+		A124A9211F11F28A00C2965A /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Credentials.swift; path = "../../speech-to-text-swift/Speech to Text/Credentials.swift"; sourceTree = "<group>"; };
 		BBBF8FDD118A921431454940 /* Pods_vr_everywhereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vr_everywhereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6525DE155F6A4FDAFC4867 /* Pods-vr-everywhereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhereTests/Pods-vr-everywhereTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2F44E694D79B0F753A10C37 /* Pods-vr-everywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vr-everywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vr-everywhere/Pods-vr-everywhere.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +91,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6AB43A1C200DC43A9CB2CCA /* Pods_vr_everywhere.framework in Frameworks */,
+				A124A91B1F11F22A00C2965A /* RestKit.framework in Frameworks */,
+				A124A91D1F11F23200C2965A /* SpeechToTextV1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +156,7 @@
 				A10735E51F10BC22003A3AAC /* AppDelegate.swift */,
 				A10735E71F10BC22003A3AAC /* ViewController.swift */,
 				A10736131F11271E003A3AAC /* HomeController.swift */,
+				A124A9211F11F28A00C2965A /* Credentials.swift */,
 				A10735E91F10BC22003A3AAC /* Main.storyboard */,
 				A10735EC1F10BC22003A3AAC /* Assets.xcassets */,
 				A10735EE1F10BC22003A3AAC /* LaunchScreen.storyboard */,
@@ -161,6 +186,8 @@
 		B6F4546CAAB177B50BCCC20A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A124A91C1F11F23200C2965A /* SpeechToTextV1.framework */,
+				A124A91A1F11F22A00C2965A /* RestKit.framework */,
 				034392F75C3EC66F84C08E94 /* Pods_vr_everywhere.framework */,
 				BBBF8FDD118A921431454940 /* Pods_vr_everywhereTests.framework */,
 				49812F41C513CC8A717F12CD /* Pods_vr_everywhereUITests.framework */,
@@ -181,6 +208,7 @@
 				A10735E01F10BC22003A3AAC /* Resources */,
 				625872300150628B945067BC /* [CP] Embed Pods Frameworks */,
 				012B67FC6227B5B123CDB98D /* [CP] Copy Pods Resources */,
+				A124A91E1F11F24C00C2965A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -454,6 +482,7 @@
 			files = (
 				A10735E81F10BC22003A3AAC /* ViewController.swift in Sources */,
 				A10735E61F10BC22003A3AAC /* AppDelegate.swift in Sources */,
+				A124A9221F11F28A00C2965A /* Credentials.swift in Sources */,
 				A10736141F11271E003A3AAC /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,6 +635,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "vr-everywhere/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhere";
@@ -620,6 +653,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "vr-everywhere/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.vr-everywhere";

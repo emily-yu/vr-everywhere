@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "04F60D9081F9715DF1AD40BB34ACCECFAB00FCB8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "04F60D9081F9715DF1AD40BB34ACCECFAB00FCB8" : 9223372036854775807,
+    "47B3CBB9DDCEED0931CF8CEFE173036BF6AD51FF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9A24FD94-F0AC-4A55-879D-E6CD33CFBEF5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "04F60D9081F9715DF1AD40BB34ACCECFAB00FCB8" : "vr-everywhere\/",
+    "47B3CBB9DDCEED0931CF8CEFE173036BF6AD51FF" : "speech-to-text-swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "vr-everywhere",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "vr-everywhere.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/emily-yu\/vr-everywhere.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "04F60D9081F9715DF1AD40BB34ACCECFAB00FCB8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/watson-developer-cloud\/speech-to-text-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47B3CBB9DDCEED0931CF8CEFE173036BF6AD51FF"
+    }
+  ]
+}
