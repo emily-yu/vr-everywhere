@@ -11,8 +11,14 @@ import Foundation
 import AVFoundation
 import Photos
 import Alamofire
+import SpeechToTextV1
 
 class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
+    
+    // asdf
+    var speechToText: SpeechToText!
+    var speechToTextSession: SpeechToTextSession!
+    var isStreaming = false
     
     var session: AVCaptureSession!
     var input: AVCaptureDeviceInput!
@@ -40,64 +46,85 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var noise: UIButton!
     @IBAction func noise(_ sender: Any) {
         print("noise")
-        if audioRecorder?.isRecording == false {
-            play.isEnabled = false
-            stop.isEnabled = true
-            audioRecorder?.record()
-        }
+        streamMicrophoneBasic()
     }
     
-    @IBOutlet var stop: UIButton!
-    @IBAction func stop(_ sender: Any) {
-        print("stop")
-        stop.isEnabled = false
-        play.isEnabled = true
-        noise.isEnabled = true
-        
-        if audioRecorder?.isRecording == true {
-            audioRecorder?.stop()
+    /*
+    This function demonstrates how to use the basic
+    `SpeechToText` class to transcribe microphone audio.
+    */
+    public func streamMicrophoneBasic() {
+        if !isStreaming {
             
-            // transcribe to text here
+            // update state
+            noise.setTitle("Stop Microphone", for: .normal)
+            isStreaming = true
             
+            // define recognition settings
+            var settings = RecognitionSettings(contentType: .opus)
+            settings.continuous = true
+            settings.interimResults = true
+            
+            // define error function
+            let failure = { (error: Error) in print(error) }
+            
+            // start recognizing microphone audio
+            speechToText.recognizeMicrophone(settings: settings, failure: failure) {
+                results in
+                self.textView.text = results.bestTranscript
+            }
             
         } else {
-            audioPlayer?.stop()
-        }
-    }
-    
-    @IBOutlet var play: UIButton!
-    @IBAction func play(_ sender: Any) {
-        print("play")
-        if audioRecorder?.isRecording == false {
-            stop.isEnabled = true
-            noise.isEnabled = false
             
-            do {
-                try audioPlayer = AVAudioPlayer(contentsOf:
-                    (audioRecorder?.url)!)
-                audioPlayer!.delegate = self
-                audioPlayer!.prepareToPlay()
-                audioPlayer!.play()
-            } catch let error as NSError {
-                print("audioPlayer error: \(error.localizedDescription)")
-            }
+            // update state
+            noise.setTitle("Start Microphone", for: .normal)
+            isStreaming = false
+            
+            // stop recognizing microphone audio
+            speechToText.stopRecognizeMicrophone()
         }
     }
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        noise.isEnabled = true
-        stop.isEnabled = false
-    }
-    
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-        print("Audio Play Decode Error")
-    }
-    
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-    }
-    
-    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-        print("Audio Record Encode Error")
+    /**
+     This function demonstrates how to use the more advanced
+     `SpeechToTextSession` class to transcribe microphone audio.
+     */
+    public func streamMicrophoneAdvanced() {
+        if !isStreaming {
+            
+            // update state
+            noise.setTitle("Stop Microphone", for: .normal)
+            isStreaming = true
+            
+            // define callbacks
+            speechToTextSession.onConnect = { print("connected") }
+            speechToTextSession.onDisconnect = { print("disconnected") }
+            speechToTextSession.onError = { error in print(error) }
+            speechToTextSession.onPowerData = { decibels in print(decibels) }
+            speechToTextSession.onMicrophoneData = { data in print("received data") }
+            speechToTextSession.onResults = { results in self.textView.text = results.bestTranscript }
+            
+            // define recognition settings
+            var settings = RecognitionSettings(contentType: .opus)
+            settings.continuous = true
+            settings.interimResults = true
+            
+            // start recognizing microphone audio
+            speechToTextSession.connect()
+            speechToTextSession.startRequest(settings: settings)
+            speechToTextSession.startMicrophone()
+            
+        } else {
+            
+            // update state
+            noise.setTitle("Start Microphone", for: .normal)
+            isStreaming = false
+            
+            // stop recognizing microphone audio
+            speechToTextSession.stopMicrophone()
+            speechToTextSession.stopRequest()
+            speechToTextSession.disconnect()
+        }
     }
     
     func timerCalled(timer: Timer) {
@@ -109,38 +136,14 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        play.isEnabled = false
-        stop.isEnabled = false
-        
-        let fileMgr = FileManager.default
-        
-        let dirPaths = fileMgr.urls(for: .documentDirectory,
-                                    in: .userDomainMask)
-        
-        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
-        
-        let recordSettings =
-            [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
-             AVEncoderBitRateKey: 16,
-             AVNumberOfChannelsKey: 2,
-             AVSampleRateKey: 44100.0] as [String : Any]
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        
-        do {
-            try audioSession.setCategory(
-                AVAudioSessionCategoryPlayAndRecord)
-        } catch let error as NSError {
-            print("audioSession error: \(error.localizedDescription)")
-        }
-        
-        do {
-            try audioRecorder = AVAudioRecorder(url: soundFileURL,
-                                                settings: recordSettings as [String : AnyObject])
-            audioRecorder?.prepareToRecord()
-        } catch let error as NSError {
-            print("audioSession error: \(error.localizedDescription)")
-        }
+        speechToText = SpeechToText(
+            username: Credentials.SpeechToTextUsername,
+            password: Credentials.SpeechToTextPassword
+        )
+        speechToTextSession = SpeechToTextSession(
+            username: Credentials.SpeechToTextUsername,
+            password: Credentials.SpeechToTextPassword
+        )
     }
     
     override func didReceiveMemoryWarning() {
