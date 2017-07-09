@@ -102,7 +102,7 @@ def scrape(file_name, number_of_images):
             # matrices["left"].append(last_row)
             # matrices["right"].append(last_row)
             # matrices["down"].append(last_row)
-
+            print (index)
             index += 1
             if(index >= number_of_images):
                 break;
@@ -178,7 +178,7 @@ def build_dataset(count, row_to_index):
     # print (reversed_dictionary)
     return data, dictionary, reversed_dictionary
 
-images_num = 10
+images_num = 890
 
 matrices = scrape("urls.txt", images_num)
 
@@ -200,7 +200,18 @@ data_index = 0
 batch_size = 128
 num_skips = 4
 skip_window = 1
-vocabulary_size = len(reverse_dict["up"])
+up_size = len(reverse_dict["up"])
+left_size = len(reverse_dict["left"])
+right_size = len(reverse_dict["right"])
+down_size = len(reverse_dict["down"])
+
+vocabulary_size = 283
+print ("up siez is {0}".format(up_size))
+print ("left isze is {0}".format(left_size))
+print ("right siez is {0}".format(right_size))
+print ("down siez is {0}".format(down_size))
+print (vocabulary_size)
+
 
 # Step 3: Function to generate a training batch for the skip-gram model.
 def generate_batch(batch_size, num_skips, skip_window, direction):
@@ -243,13 +254,13 @@ batch, labels = generate_batch(batch_size=8, num_skips=2, skip_window=1, directi
 
 
 # for i in range(8):
-  # print(batch[i], reverse_dict['up'][batch[i]],
+  # print(batch[i], reverse_dictvocabulary_size['up'][batch[i]],
         # '->', labels[i, 0], reverse_dict['up'][labels[i, 0]])
 
 # Step 4: Build and train a skip-gram model.
 
 batch_size = 128
-embedding_size = 128  # Dimension of the embedding vector.
+embedding_size = 32  # Dimension of the embedding vector.
 skip_window = 4       # How many words to consider left and right.
 num_skips = 2         # How many times to reuse an input to generate a label.
 
@@ -273,6 +284,8 @@ with graph.as_default():
   # Ops and variables pinned to the CPU because of missing GPU implementation
   with tf.device('/cpu:0'):
     # Look up embeddings for inputs.
+    print (vocabulary_size)
+    print (embedding_size)
     embeddings = tf.Variable(
         tf.random_uniform([vocabulary_size, embedding_size], -1.0, 1.0))
     embed = tf.nn.embedding_lookup(embeddings, train_inputs)
@@ -299,85 +312,65 @@ with graph.as_default():
 
   # Compute the cosine similarity between minibatch examples and all embeddings.
   norm = tf.sqrt(tf.reduce_sum(tf.square(embeddings), 1, keep_dims=True))
+  print ("yahallo marker thing")
+  print (norm)
+  print (embeddings)
   normalized_embeddings = embeddings / norm
+  print (normalized_embeddings)
   valid_embeddings = tf.nn.embedding_lookup(
       normalized_embeddings, valid_dataset)
   similarity = tf.matmul(
       valid_embeddings, normalized_embeddings, transpose_b=True)
-
   # Add variable initializer.
   init = tf.global_variables_initializer()
 
 # Step 5: Begin training.
 num_steps = 100001
 
-with tf.Session(graph=graph) as session:
-  # We must initialize all variables before we use them.
-  init.run()
-  print('Initialized')
-  direction = "up"
+for direction in directions["up", "left", "down", "right"]:
+    with tf.Session(graph=graph) as session:
+      # We must initialize all variables before we use them.
+      saver = tf.train.Saver()
 
-  average_loss = 0
-  for step in xrange(num_steps):
-    batch_inputs, batch_labels = generate_batch(
-        batch_size, num_skips, skip_window, direction)
-    feed_dict = {train_inputs: batch_inputs, train_labels: batch_labels}
+      # for direction in ["up", "right", "left", "down"]:
+      init.run()
 
-    # We perform one update step by evaluating the optimizer op (including it
-    # in the list of returned values for session.run()
-    _, loss_val = session.run([optimizer, loss], feed_dict=feed_dict)
-    average_loss += loss_val
-
-    if step % 2000 == 0:
-      if step > 0:
-        average_loss /= 2000
-      # The average loss is an estimate of the loss over the last 2000 batches.
-      print('Average loss at step ', step, ': ', average_loss)
       average_loss = 0
+      for step in xrange(num_steps):
+        batch_inputs, batch_labels = generate_batch(
+            batch_size, num_skips, skip_window, direction)
 
-    # Note that this is expensive (~20% slowdown if computed every 500 steps)
-    if step % 10000 == 0:
-      sim = similarity.eval()
-      for i in xrange(valid_size):
-        valid_word = reverse_dict[direction][valid_examples[i]]
-        top_k = 8  # number of nearest neighbors
-        nearest = (-sim[i, :]).argsort()[1:top_k + 1]
+        feed_dict = {train_inputs: batch_inputs, train_labels: batch_labels}
 
-        log_str = 'Nearest to %s:' % valid_word
-        for k in xrange(top_k):
-          close_word = reverse_dict[direction][nearest[k]]
-          log_str = '%s %s,' % (log_str, close_word)
-        print(log_str)
-  final_embeddings = normalized_embeddings.eval()
+        # We perform one update step by evaluating the optimizer op (including it
+        # in the list of returned values for session.run()
+        _, loss_val = session.run([optimizer, loss], feed_dict=feed_dict)
+        average_loss += loss_val
+
+        if step % 2000 == 0:
+          if step > 0:
+            average_loss /= 2000
+          # The average loss is an estimate of the loss over the last 2000 batches.
+          print('Average loss at step ', step, ': ', average_loss)
+          average_loss = 0
+
+        # Note that this is expensive (~20% slowdown if computed every 500 steps)
+        if step % 10000 == 0:
+          sim = similarity.eval()
+          for i in xrange(valid_size):
+            valid_word = reverse_dict[direction][valid_examples[i]]
+            top_k = 8  # number of nearest neighbors
+            nearest = (-sim[i, :]).argsort()[1:top_k + 1]
+            print ("similarity is {0}".format(sim))
+            print ("nearest is {0}".format(nearest))
+
+            log_str = 'Nearest to %s:' % valid_word
+            for k in xrange(top_k):
+              print (len(reverse_dict[direction]))
+              close_word = reverse_dict[direction][nearest[k]]
+              log_str = '%s %s,' % (log_str, close_word)
+            print(log_str)
+          saver.save(session, "/Users/kevin/documents/imagetovec/" + direction + ".ckpt", global_step=i)
+      final_embeddings = normalized_embeddings.eval()
 
 # Step 6: Visualize the embeddings.
-
-
-def plot_with_labels(low_dim_embs, labels, filename='tsne.png'):
-  assert low_dim_embs.shape[0] >= len(labels), 'More labels than embeddings'
-  plt.figure(figsize=(18, 18))  # in inches
-  for i, label in enumerate(labels):
-    x, y = low_dim_embs[i, :]
-    plt.scatter(x, y)
-    plt.annotate(label,
-                 xy=(x, y),
-                 xytext=(5, 2),
-                 textcoords='offset points',
-                 ha='right',
-                 va='bottom')
-
-  plt.savefig(filename)
-
-try:
-  # pylint: disable=g-import-not-at-top
-  from sklearn.manifold import TSNE
-  import matplotlib.pyplot as plt
-
-  tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
-  plot_only = 500
-  low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
-  labels = [reverse_dict[i] for i in xrange(plot_only)]
-  plot_with_labels(low_dim_embs, labels)
-
-except ImportError:
-  print('Please install sklearn, matplotlib, and scipy to show embeddings.')
