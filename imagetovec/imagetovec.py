@@ -15,7 +15,9 @@ from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import image_utils
-import urllib
+import urllib, cStringIO
+import numpy as np
+
 from PIL import Image
 import cv2
 
@@ -35,55 +37,90 @@ def conv2d(x,W):
 def maxPool2d(x):
     return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1],padding="SAME?")
 
-imageList = []
-imageList, imageNames = image_utils.getImages("../randomimages/")
 
-image_utils.saveImage(imageList[0], "same.jpg")
 
-bufferSize = 5
-
-columns_list = list()
-for image in imageList:
-    for row in image:
-        columns_list.append(row)
-
-number_of_columns = len(columns_list)
-
-def scrape(file_name):
-    f = file.open(file_name,'r')
+def scrape(file_name, number_of_images):
+    f = open(file_name,'r')
     url_file = f.read()
     url_list = url_file.split('\n')
+    index = 0
 
-    with urllib.request.urlopen(URL) as url:
-        print(url.read())
+    up_matrix_images = list()
+    down_matrix_images = list()
+    left_matrix_images = list()
+    right_matrix_images = list()
 
-scrape("urls.txt")
+    for url in url_list:
+        url_list = url.split('\t')
+        real_url = url_list[1]
 
-from bs4 import BeautifulSoup
-import requests
+        print (real_url)
 
-page = requests.get("http://dataquestio.github.io/web-scraping-pages/simple.html")
-soup = BeautifulSoup(page.content, 'html.parser')
+        try:
+            file = cStringIO.StringIO(urllib.urlopen(real_url).read())
+            img = Image.open(file)
 
-print(soup.prettify())
+            opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
-def build_dataset(columns_list, number_of_columns):
+            width = opencvImage.shape[0]
+            height = opencvImage.shape[1]
+
+            x = int(height/2) - 64
+            y = int(width/2) - 64
+            crop_image_height = 128
+            crop_image_width = 128
+
+            opencv_image = opencvImage[y:y + crop_image_height, x:x + crop_image_height]
+            for up_row in opencv_image:
+                up_matrix_image.append(up_row)
+
+            left_image = image_utils.rotate(opencv_image, 90)
+            for left_row in left_image:
+                left_matrix_images.append(left_row)
+
+            right_image = image_utils.rotate(opencv_image, 270)
+            for right_row in right_image:
+                right_matrix_images.append(right_row)
+
+            down_image = image_utils.rotate(opencv_image, 90)
+            for left_row in left_image:
+                down_matrix_images.append(down_matrix)
+
+            last_row = list()
+            for negative_index in range(31):
+                last_row.append(-1)
+
+            up_matrix_image.append(last_row)
+            left_matrix_image.append(last_row)
+            right_matrix_image.append(last_row)
+            down_matrix_image.append(last_row)
+
+            index += 1
+            print (index)
+            if(index == number_of_images):
+                break;
+        except:
+            continue
+
+def image_to_dict(row_list):
+    image_dictionary = dict()
+
+    for row in row_list:
+        if row in image_dictionary.keys():
+            image_dictionary[row] = image_dictionary[row] + 1
+        else:
+            image_dictionary[row] = 0
+
+def build_dataset(columns_list, count, number_of_columns):
     """Process raw inputs into a dataset."""
     count = {}
-    # scrape data and preload this before predict
-    # put a shit ton of sample rows into count
 
     data = list()
     dictionary = dict()
     unk_count = 0
     for row in image:
         for pixel_index in range(len(row)):
-            failCount = 0
             for row2 in count:
-                if not row2[pixel_index] - bufferSize <= row[pixel_index] <= row2[pixel_index] + bufferSize:
-                    failCount += 1
-
-            if(failCount >= 3):
                 index = 0
                 unk_count += 1
             elif(pixel_index == len(row)):
@@ -93,8 +130,7 @@ def build_dataset(columns_list, number_of_columns):
     reversed_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
     return data, dictionary, reversed_dictionary
 
-
-data, dictionary, reverse_dictionary = build_dataset(imageList, number_of_columns)
+data, dictionary, reverse_dictionary = build_dataset(up_matrix, imageList, number_of_columns)
 
 # have dataset, start batch stuff
 
@@ -277,3 +313,19 @@ try:
 
 except ImportError:
   print('Please install sklearn, matplotlib, and scipy to show embeddings.')
+
+imageList = []
+imageList, imageNames = image_utils.getImages("../../randomimages/")
+
+image_utils.saveImage(imageList[0], "same.jpg")
+
+bufferSize = 5
+
+columns_list = list()
+for image in imageList:
+    for row in image:
+        columns_list.append(row)
+
+number_of_columns = len(columns_list)
+
+up_matrix, left_matrix, right_matrix, down_matrix = scrape("urls.txt", 10)
