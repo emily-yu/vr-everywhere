@@ -14,14 +14,21 @@ import Alamofire
 
 class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var session: AVCaptureSession!
+    var input: AVCaptureDeviceInput!
+    var output: AVCaptureStillImageOutput!
+    var previewLayer: AVCaptureVideoPreviewLayer!
+    var base64String: String?
+    var ngrok = "https://4adacd3b.ngrok.io/send?input=";
+    
     @IBAction func trigger(_ sender: Any) {
         self.setupSession()
-        var cameraTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: false)
-        let when = DispatchTime.now() + 4 // change 2 to number of seconds to last for
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            cameraTimer.invalidate()
-            Alamofire.request(self.ngrok)
-        }
+//        var cameraTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: false)
+        capturePhoto()
+//        let when = DispatchTime.now() + 4 // change 2 to number of seconds to last for
+//        DispatchQueue.main.asyncAfter(deadline: when) {
+//            cameraTimer.invalidate()
+//        }
     }
     
     func timerCalled(timer: Timer) {
@@ -38,12 +45,6 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    var session: AVCaptureSession!
-    var input: AVCaptureDeviceInput!
-    var output: AVCaptureStillImageOutput!
-    var previewLayer: AVCaptureVideoPreviewLayer!
-    var ngrok = "https://4adacd3b.ngrok.io/send?input=";
     
     func setupSession() {
         print("haaaeaea")
@@ -86,8 +87,10 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let image = UIImage(data: imageData!) else { return }
 //            
             let imageJPG: Data! = UIImageJPEGRepresentation(image, 0.1)
-            let base64String = (imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-            self.ngrok += "\(base64String)%" // splice it at %
+//            let base64String = (imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+            Alamofire.request("\(self.ngrok)\((imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)))")
+            print("\(self.ngrok)\((imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)))")
+//            self.ngrok += "\(base64String)%" // splice it at %
             
 //            PHPhotoLibrary.shared().performChanges({
 //                PHAssetChangeRequest.creationRequestForAsset(from: image)
