@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "vr-everywhere/HomeController.swift"
-            timestampString = "521257446.030857"
+            timestampString = "521260399.615195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "capturePhoto()"
             landmarkType = "7">
          </BreakpointContent>
