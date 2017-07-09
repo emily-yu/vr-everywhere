@@ -16,16 +16,17 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func trigger(_ sender: Any) {
         self.setupSession()
-        var cameraTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: true)
+        var cameraTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: false)
         let when = DispatchTime.now() + 4 // change 2 to number of seconds to last for
         DispatchQueue.main.asyncAfter(deadline: when) {
             cameraTimer.invalidate()
-            Alamofire.request("http://4adacd3b.ngrok.io/send?input=\(self.ngrok)")
+            Alamofire.request(self.ngrok)
         }
     }
     
     func timerCalled(timer: Timer) {
         capturePhoto()
+        print("HEYYYYYYYYYYYYYY")
     }
     
     override func viewDidLoad() {
@@ -42,11 +43,11 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var input: AVCaptureDeviceInput!
     var output: AVCaptureStillImageOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var count = 0;
     var ngrok = "https://4adacd3b.ngrok.io/send?input=";
     
     func setupSession() {
         print("haaaeaea")
+        print(ngrok)
         session = AVCaptureSession()
         session.sessionPreset = AVCaptureSessionPresetPhoto
         
@@ -83,13 +84,24 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
             guard let image = UIImage(data: imageData!) else { return }
-            
+//            
             let imageJPG: Data! = UIImageJPEGRepresentation(image, 0.1)
             let base64String = (imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             self.ngrok += "\(base64String)%" // splice it at %
-            print("same")
-            print(" ")
-            print(self.ngrok)
+            
+//            PHPhotoLibrary.shared().performChanges({
+//                PHAssetChangeRequest.creationRequestForAsset(from: image)
+//            }, completionHandler: { success, error in
+//                if success {
+//                    // Saved successfully!
+//                }
+//                else if let error = error {
+//                    // Save photo failed with error
+//                }
+//                else {
+//                    // Save photo failed with no error
+//                }
+//            })
         }
     }
 

@@ -131,8 +131,8 @@
 			children = (
 				A10735E51F10BC22003A3AAC /* AppDelegate.swift */,
 				A10735E71F10BC22003A3AAC /* ViewController.swift */,
-				A10735E91F10BC22003A3AAC /* Main.storyboard */,
 				A10736131F11271E003A3AAC /* HomeController.swift */,
+				A10735E91F10BC22003A3AAC /* Main.storyboard */,
 				A10735EC1F10BC22003A3AAC /* Assets.xcassets */,
 				A10735EE1F10BC22003A3AAC /* LaunchScreen.storyboard */,
 				A10735F11F10BC22003A3AAC /* Info.plist */,

@@ -16,6 +16,7 @@ def hello():
 @app.route("/send")
 def send():
 	image = request.args.get("input")
+	print ("YAALLO MAREKR")
 	print(image)
 	print(image.split('%', (image.count('%')))) # should be each of the images in base64
 	return "asdf"
