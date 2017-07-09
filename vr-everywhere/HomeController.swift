@@ -15,7 +15,6 @@ import SpeechToTextV1
 
 class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
-    // asdf
     var speechToText: SpeechToText!
     var speechToTextSession: SpeechToTextSession!
     var isStreaming = false
@@ -25,7 +24,7 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var output: AVCaptureStillImageOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var base64String: String?
-    var ngrok = "https://4adacd3b.ngrok.io/send?input=";
+    var ngrok = "https://4adacd3b.ngrok.io/sendImage?input=";
     
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
@@ -34,12 +33,7 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func trigger(_ sender: Any) {
         self.setupSession()
-//        var cameraTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(HomeController.timerCalled), userInfo: nil, repeats: false)
         capturePhoto()
-//        let when = DispatchTime.now() + 4 // change 2 to number of seconds to last for
-//        DispatchQueue.main.asyncAfter(deadline: when) {
-//            cameraTimer.invalidate()
-//        }
     }
     
     // record
@@ -49,10 +43,10 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
         streamMicrophoneBasic()
     }
     
-    /*
-    This function demonstrates how to use the basic
-    `SpeechToText` class to transcribe microphone audio.
-    */
+    @IBAction func addAudio(_ sender: Any) {
+        Alamofire.request("https://4adacd3b.ngrok.io/sendText?input=\(textView.text)")
+    }
+    
     public func streamMicrophoneBasic() {
         if !isStreaming {
             
@@ -85,10 +79,7 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    /**
-     This function demonstrates how to use the more advanced
-     `SpeechToTextSession` class to transcribe microphone audio.
-     */
+
     public func streamMicrophoneAdvanced() {
         if !isStreaming {
             
@@ -97,12 +88,24 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
             isStreaming = true
             
             // define callbacks
-            speechToTextSession.onConnect = { print("connected") }
-            speechToTextSession.onDisconnect = { print("disconnected") }
-            speechToTextSession.onError = { error in print(error) }
-            speechToTextSession.onPowerData = { decibels in print(decibels) }
-            speechToTextSession.onMicrophoneData = { data in print("received data") }
-            speechToTextSession.onResults = { results in self.textView.text = results.bestTranscript }
+            speechToTextSession.onConnect = {
+                print("connected")
+            }
+            speechToTextSession.onDisconnect = {
+                print("disconnected")
+            }
+            speechToTextSession.onError = {
+                error in print(error)
+            }
+            speechToTextSession.onPowerData = {
+                decibels in print(decibels)
+            }
+            speechToTextSession.onMicrophoneData = {
+                data in print("received data")
+            }
+            speechToTextSession.onResults = {
+                results in self.textView.text = results.bestTranscript
+            }
             
             // define recognition settings
             var settings = RecognitionSettings(contentType: .opus)
@@ -184,32 +187,14 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func capturePhoto() {
         guard let connection = output.connection(withMediaType: AVMediaTypeVideo) else { return }
         connection.videoOrientation = .portrait
-        
+
         output.captureStillImageAsynchronously(from: connection) { (sampleBuffer, error) in
             guard sampleBuffer != nil && error == nil else { return }
-            
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
             guard let image = UIImage(data: imageData!) else { return }
-//            
             let imageJPG: Data! = UIImageJPEGRepresentation(image, 0.1)
-//            let base64String = (imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             Alamofire.request("\(self.ngrok)\((imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)))")
             print("\(self.ngrok)\((imageJPG as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)))")
-//            self.ngrok += "\(base64String)%" // splice it at %
-            
-//            PHPhotoLibrary.shared().performChanges({
-//                PHAssetChangeRequest.creationRequestForAsset(from: image)
-//            }, completionHandler: { success, error in
-//                if success {
-//                    // Saved successfully!
-//                }
-//                else if let error = error {
-//                    // Save photo failed with error
-//                }
-//                else {
-//                    // Save photo failed with no error
-//                }
-//            })
         }
     }
 

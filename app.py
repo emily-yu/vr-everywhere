@@ -16,9 +16,9 @@ images = []
 def hello():
     return "hey its me"
 
-@app.route("/send")
-def send():
-	# https://4adacd3b.ngrok.io/send?input=blablablhalblablhabhlalh
+@app.route("/sendImage")
+def sendImage():
+	# https://4adacd3b.ngrok.io/sendImage?input=blablablhalblablhabhlalh
 	# this part is a little boosted but nrlly
 	image = request.args.get("input")
 	print ("YAALLO MAREKR")
@@ -28,6 +28,13 @@ def send():
 	print(decoded)
 	images.append(decoded)
 	return decoded
+
+@app.route("/sendText")
+def sendText():
+	# https://4adacd3b.ngrok.io/sendText?input=blablablhalblablhabhlalh
+	caption = request.args.get("input")
+	print(caption)
+	return caption
 
 if __name__ == '__main__':
         app.run()
