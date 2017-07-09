@@ -145,6 +145,7 @@
                         <outlet property="noise" destination="Elc-Ez-r5u" id="fbP-ca-kNl"/>
                         <outlet property="play" destination="MEU-m4-uz8" id="jtV-wi-cJ7"/>
                         <outlet property="stop" destination="Uxc-MS-ox7" id="Yi6-cL-5wb"/>
+                        <outlet property="textView" destination="0ag-Rb-S50" id="IAa-Ny-xI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opL-sg-Mje" userLabel="First Responder" sceneMemberID="firstResponder"/>

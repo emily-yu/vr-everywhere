@@ -24,6 +24,7 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
     
+    @IBOutlet var textView: UITextView!
     
     @IBAction func trigger(_ sender: Any) {
         self.setupSession()
@@ -55,6 +56,10 @@ class HomeController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         if audioRecorder?.isRecording == true {
             audioRecorder?.stop()
+            
+            // transcribe to text here
+            
+            
         } else {
             audioPlayer?.stop()
         }
