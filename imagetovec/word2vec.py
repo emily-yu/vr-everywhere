@@ -87,6 +87,10 @@ def build_dataset(words, n_words):
 
 data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
                                                             vocabulary_size)
+
+print ("reversed dictionary")
+print (reverse_dictionary)
+
 del vocabulary  # Hint to reduce memory.
 print('Most common words (+UNK)', count[:5])
 print('Sample data', data[:10], [reverse_dictionary[i] for i in data[:10]])
@@ -126,6 +130,9 @@ def generate_batch(batch_size, num_skips, skip_window):
   return batch, labels
 
 batch, labels = generate_batch(batch_size=8, num_skips=2, skip_window=1)
+print ("for fucks sake holy shit")
+print (batch)
+print (reverse_dictionary)
 for i in range(8):
   print(batch[i], reverse_dictionary[batch[i]],
         '->', labels[i, 0], reverse_dictionary[labels[i, 0]])
